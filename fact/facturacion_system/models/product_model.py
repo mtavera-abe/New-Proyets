@@ -1,4 +1,4 @@
-from models.database import create_connection
+from fact.facturacion_system.models.database import create_connection
 from datetime import datetime
 
 class Producto:

@@ -1,6 +1,15 @@
 import sqlite3
 from sqlite3 import Error
 
+class Database:
+    def __init__(self):
+        self.connection = sqlite3.connect('facturacion.db3')
+        self.create_tables()
+    
+    def create_tables(self):
+        # Código para crear tablas
+        pass
+
 def create_connection(db_file):
     """Crear una conexión a la base de datos SQLite"""
     conn = None

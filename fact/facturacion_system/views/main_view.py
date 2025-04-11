@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from models.product_model import Producto
-from models.invoice_model import Factura
+from fact.facturacion_system.models.product_model import Producto
+from fact.facturacion_system.models.invoice_model import Factura
 from datetime import datetime
 
 class FacturacionView:
