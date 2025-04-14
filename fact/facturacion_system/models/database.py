@@ -1,14 +1,6 @@
 import sqlite3
 from sqlite3 import Error
-
-class Database:
-    def __init__(self):
-        self.connection = sqlite3.connect('facturacion.db3')
-        self.create_tables()
-    
-    def create_tables(self):
-        # Código para crear tablas
-        pass
+import os
 
 def create_connection(db_file):
     """Crear una conexión a la base de datos SQLite"""
@@ -18,12 +10,16 @@ def create_connection(db_file):
         print(f"Conexión exitosa a SQLite ({db_file})")
         return conn
     except Error as e:
-        print(e)
+        print(f"Error al conectar con la base de datos: {e}")
     
     return conn
 
 def create_tables(conn):
     """Crear tablas necesarias en la base de datos"""
+    if conn is None:
+        print("No se puede crear tablas porque la conexión es None")
+        return
+
     try:
         c = conn.cursor()
         
@@ -78,11 +74,15 @@ def create_tables(conn):
         conn.commit()
         print("Tablas creadas exitosamente")
     except Error as e:
-        print(e)
+        print(f"Error al crear tablas: {e}")
 
 def initialize_database():
     """Inicializar la base de datos"""
-    database = "data/facturacion.db"
+    database = 'data/facturacion.db3'
+    
+    # Asegurar que el directorio exista
+    os.makedirs(os.path.dirname(database), exist_ok=True)
+    
     conn = create_connection(database)
     
     if conn is not None:
@@ -90,6 +90,6 @@ def initialize_database():
         conn.close()
     else:
         print("Error al conectar con la base de datos")
-
+        
 if __name__ == '__main__':
     initialize_database()

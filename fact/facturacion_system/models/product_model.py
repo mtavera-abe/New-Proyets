@@ -12,7 +12,7 @@ class Producto:
     
     def save(self):
         """Guardar producto en la base de datos"""
-        conn = create_connection("data/facturacion.db")
+        conn = create_connection("data/facturacion.db3")
         sql = '''INSERT INTO productos(codigo_barras, nombre, descripcion, precio, stock, categoria)
                  VALUES(?,?,?,?,?,?)'''
         try:
@@ -30,7 +30,7 @@ class Producto:
     @staticmethod
     def get_all():
         """Obtener todos los productos"""
-        conn = create_connection("data/facturacion.db")
+        conn = create_connection("data/facturacion.db3")
         sql = "SELECT * FROM productos ORDER BY nombre"
         try:
             cur = conn.cursor()
@@ -46,7 +46,7 @@ class Producto:
     @staticmethod
     def get_by_barcode(codigo_barras):
         """Obtener producto por código de barras"""
-        conn = create_connection("data/facturacion.db")
+        conn = create_connection("data/facturacion.db3")
         sql = "SELECT * FROM productos WHERE codigo_barras = ?"
         try:
             cur = conn.cursor()
@@ -62,7 +62,7 @@ class Producto:
     @staticmethod
     def update_stock(id_producto, cantidad):
         """Actualizar el stock de un producto"""
-        conn = create_connection("data/facturacion.db")
+        conn = create_connection("data/facturacion.db3")
         sql = "UPDATE productos SET stock = stock - ? WHERE id = ?"
         try:
             cur = conn.cursor()

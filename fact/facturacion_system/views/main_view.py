@@ -247,7 +247,7 @@ class FacturacionView:
         id_producto = values[0]
         codigo = values[1]
         nombre = values[2]
-        precio = float(values[3])
+        precio = float(values[4])
         subtotal = precio * cantidad
         
         # Verificar si el producto ya está en la factura
