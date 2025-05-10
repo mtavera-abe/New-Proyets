@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from fact.facturacion_system.models.product_model import Producto
 from fact.facturacion_system.models.invoice_model import Factura
+from fact.facturacion_system.views.product_view import ProductosView
 from datetime import datetime
 
 class FacturacionView:
@@ -86,6 +87,7 @@ class FacturacionView:
         self.qty_spinbox = tk.Spinbox(qty_frame, from_=1, to=100, width=5)
         self.qty_spinbox.pack(side=tk.LEFT, padx=5)
         tk.Button(qty_frame, text="Agregar a Factura", command=self.add_to_invoice).pack(side=tk.LEFT, padx=5)
+        tk.Button(qty_frame, text="Pagar", command=self.Open_payment).pack(side=tk.LEFT, padx=5)
         
         # Frame de factura
         invoice_frame = tk.LabelFrame(main_frame, text="Factura", padx=5, pady=5)
@@ -135,7 +137,7 @@ class FacturacionView:
         tk.Button(buttons_frame, text="Eliminar Item", command=self.remove_item).pack(side=tk.LEFT, padx=5)
         tk.Button(buttons_frame, text="Generar Factura", command=self.generate_invoice).pack(side=tk.LEFT, padx=5)
         tk.Button(buttons_frame, text="Cancelar Factura", command=self.cancel_invoice).pack(side=tk.LEFT, padx=5)
-        tk.Button(buttons_frame, text="Salir", command=self.root.quit).pack(side=tk.RIGHT, padx=5)
+        tk.Button(buttons_frame, text="Salir", command=self.root.quit).pack(side=tk.RIGHT, padx=5) 
         
         # Menú superior
         menubar = tk.Menu(self.root)
@@ -343,6 +345,12 @@ class FacturacionView:
         from views.product_view import ProductosView
         top = tk.Toplevel(self.root)
         ProductosView(top)
+
+    def Open_payment(self):
+        """Abrir ventana de pago"""
+        from views.Window_Pay import PaymentView
+        top = tk.Toplevel(self.root)
+        PaymentView(top)    
 
 if __name__ == "__main__":
     root = tk.Tk()

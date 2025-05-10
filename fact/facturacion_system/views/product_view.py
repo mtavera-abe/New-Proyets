@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from models.product_model import Producto
+from fact.facturacion_system.models.product_model import Producto
 
 class ProductosView:
     def __init__(self, root, on_close_callback=None):
